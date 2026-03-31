@@ -15,7 +15,7 @@ export default function Bouquet({ onOpen }) {
         animate={{ y: [0, -12, 0], rotate: [0, 3, -3, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >
-        <img src="/bouqet.png" width="220" />
+     <img src="/bouqet.png" alt="Bouquet for Bhavika" width="220" />
       </motion.div>
     </motion.div>
   );

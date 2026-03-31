@@ -11,10 +11,6 @@ export default function Finale() {
       <p style={{ marginTop: "20px" }}>
         You’re chaotic… but our chaotic 💖
       </p>
-
-      <p style={{ marginTop: "10px", fontSize: "0.9rem" }}>
-        (still improve a little 😭)
-      </p>
     </motion.div>
   );
 }
