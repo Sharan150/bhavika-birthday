@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  text-align: center;
+  padding-top: 100px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    #ffe4ec,
+    #ffc0cb,
+    #ff9eb5
+  );
+
+  color: #5a0f2e;
+}
+
+/* glow overlay */
+.app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.4), transparent);
+  z-index: 0;
+}
+
+.app > * {
+  position: relative;
+  z-index: 1;
+}
+
+.roast-box {
+  margin-top: 30px;
+}
+
+.roast-text {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+button {
+  padding: 12px 22px;
+  border-radius: 14px;
+  border: none;
+  background: #ff4d88;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 77, 136, 0.4);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: #ff1f6b;
+}
+
+img {
+  filter: drop-shadow(0 15px 25px rgba(255, 105, 180, 0.6));
+}
+
+.emotional {
+  background: radial-gradient(circle, #ffd6e0, #ff8fab);
+  transition: all 0.5s ease;
+}
