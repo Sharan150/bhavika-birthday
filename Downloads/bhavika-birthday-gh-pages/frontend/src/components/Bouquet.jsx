@@ -8,7 +8,7 @@ export default function Bouquet({ onOpen }) {
       onClick={onOpen}
       style={{ cursor: "pointer", textAlign: "center" }}
     >
-      <img src="/Thought.png" alt="Thought" style={{ maxWidth: "100%", marginBottom: "20px" }} />
+      <img src="/bouqet.png" alt="Thought" style={{ maxWidth: "100%", marginBottom: "20px" }} />
     </motion.div>
   );
 }
