@@ -7,9 +7,9 @@ export default function App() {
 
       <div style={{ textAlign: "center", marginTop: "40px" }}>
         <img 
-          src="/bouqet.png" 
+          src="/Thought.png" 
           alt="Thought" 
-          style={{ maxWidth: "200%", height: "auto", maxHeight: "1000px" }}
+          style={{ width: "100%", maxWidth: "500px", height: "auto", display: "block", margin: "0 auto", objectFit: "contain" }}
         />
       </div>
     </div>
