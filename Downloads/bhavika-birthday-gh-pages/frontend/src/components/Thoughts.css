@@ -8,8 +8,7 @@
 }
 
 .thought-card {
-  /* Using the thought.png that is already in public dir for the background */
-  background-image: url('../../public/Thought.png'); 
+  background-image: url('../../public/template.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

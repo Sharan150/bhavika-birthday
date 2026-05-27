@@ -6,7 +6,7 @@ import './Thoughts.css';
 const Thoughts = () => {
   const [thoughts, setThoughts] = useState([]);
   const [newThought, setNewThought] = useState('');
-  const [author, setAuthor] = useState('Person A'); // Replace with actual names
+  const [author, setAuthor] = useState('Sharan');
 
   // We use the new template image from public folder for the background
   const cardStyle = {
@@ -66,8 +66,8 @@ const Thoughts = () => {
             value={author} 
             onChange={(e) => setAuthor(e.target.value)}
           >
-            <option value="Person A">Person A</option>
-            <option value="Person B">Person B</option>
+            <option value="Sharan">Sharan</option>
+            <option value="Bhavika">Bhavika</option>
           </select>
           
           <button className="submit-thought" onClick={handlePostThought}>
