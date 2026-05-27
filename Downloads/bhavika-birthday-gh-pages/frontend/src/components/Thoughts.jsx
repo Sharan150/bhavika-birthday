@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ref, push, onChildAdded, onValue } from 'firebase/database';
+import { ref, push, onValue, remove } from 'firebase/database';
 import { db } from '../firebase';
 import './Thoughts.css';
 
@@ -20,14 +20,38 @@ const Thoughts = () => {
     const unsubscribe = onValue(thoughtsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        // Convert object to array and sort by timestamp descending (newest first)
-        const thoughtsArray = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
+        const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+        const now = Date.now();
+        
+        // Convert object to array, attach id, filter > 30 days, sort by timestamp
+        const thoughtsArray = Object.entries(data)
+          .map(([id, val]) => ({ id, ...val }))
+          .filter(t => (now - t.timestamp) <= THIRTY_DAYS_MS)
+          .sort((a, b) => b.timestamp - a.timestamp);
+          
         setThoughts(thoughtsArray);
+      } else {
+        setThoughts([]);
       }
     });
 
     return () => unsubscribe();
   }, []);
+
+  const handleDelete = (id) => {
+    const password = prompt("Enter secret password to delete this thought:");
+    if (password === "sharan") {
+      const thoughtRef = ref(db, `thoughts/${id}`);
+      remove(thoughtRef).then(() => {
+        // Successfully deleted
+      }).catch((error) => {
+        console.error("Error deleting thought: ", error);
+        alert("Failed to delete thought.");
+      });
+    } else if (password !== null) {
+      alert("Incorrect password!");
+    }
+  };
 
   const handlePostThought = () => {
     if (!newThought.trim()) {
@@ -77,8 +101,11 @@ const Thoughts = () => {
       </div>
 
       <div className="thoughts-container">
-        {thoughts.map((thought, index) => (
-          <div key={index} className="thought-card" style={cardStyle}>
+        {thoughts.map((thought) => (
+          <div key={thought.id} className="thought-card" style={cardStyle}>
+            <button className="delete-thought" onClick={() => handleDelete(thought.id)} title="Delete thought">
+              &times;
+            </button>
             <p className="thought-text">{thought.text}</p>
             <p className="author">- {thought.author}</p>
             <p className="timestamp">
