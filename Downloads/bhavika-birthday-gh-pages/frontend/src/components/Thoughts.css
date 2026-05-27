@@ -42,65 +42,85 @@
   opacity: 0.7;
 }
 
-.input-card {
+.input-container {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-bottom: 40px;
 }
 
-.author-select,
-.thought-input {
-  font-family: inherit;
-  font-size: 1.15rem; /* Match thought text size */
+#thought-input {
+  /* Using the background directly on the textarea */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px;
+  padding: 80px 40px 90px 40px; /* Heavy padding so text doesn't touch corners */
   border: none;
-  background-color: transparent; /* Makes the input invisible, so you write directly on the background */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  font-family: 'Georgia', serif;
   color: #3b1c24;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.author-select:focus,
-.thought-input:focus {
-  outline: none; /* Removes the focus ring for a seamless look */
+#thought-input:focus {
+  outline: none;
+}
+
+#thought-input::placeholder {
+  color: #3b1c24;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.input-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
 }
 
 .author-select {
-  padding: 10px 0;
-  width: fit-content;
+  font-family: inherit;
+  font-size: 1.15rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #3b1c24;
+  padding: 10px 15px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
   font-style: italic;
-  appearance: none; /* Removes default dropdown arrow for cleaner look */
-  -webkit-appearance: none;
-  -moz-appearance: none;
 }
 
-.thought-input {
-  padding: 10px 0;
-  resize: none; /* Prevent resizing to keep it within the card seamlessly */
-  min-height: 150px;
-}
-
-.thought-input::placeholder {
-  color: #3b1c24;
-  opacity: 0.5; /* Subtle and elegant placeholder */
-  font-style: italic;
+.author-select:focus {
+  outline: none;
+  border-color: #3b1c24;
 }
 
 .submit-thought {
-  align-self: flex-end;
-  padding: 10px 24px;
+  padding: 12px 28px;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   background-color: #3b1c24;
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(59, 28, 36, 0.2);
 }
 
 .submit-thought:hover {
   background-color: #5a2e39;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(59, 28, 36, 0.3);
 }
 
 @media (max-width: 480px) {

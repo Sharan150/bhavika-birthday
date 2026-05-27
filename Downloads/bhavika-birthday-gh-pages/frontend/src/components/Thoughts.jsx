@@ -8,9 +8,9 @@ const Thoughts = () => {
   const [newThought, setNewThought] = useState('');
   const [author, setAuthor] = useState('Person A'); // Replace with actual names
 
-  // We use the image from public folder for the background
+  // We use the new template image from public folder for the background
   const cardStyle = {
-    backgroundImage: `url(${process.env.PUBLIC_URL}/Thought.png)`
+    backgroundImage: `url(${process.env.PUBLIC_URL}/template.png)`
   };
 
   useEffect(() => {
@@ -50,27 +50,30 @@ const Thoughts = () => {
 
   return (
     <div className="thoughts-section">
-      <div className="thought-card input-card" style={cardStyle}>
-        <select 
-          className="author-select" 
-          value={author} 
-          onChange={(e) => setAuthor(e.target.value)}
-        >
-          <option value="Person A">Person A</option>
-          <option value="Person B">Person B</option>
-        </select>
-        
+      <div className="input-container">
         <textarea 
           className="thought-input" 
+          id="thought-input"
+          style={cardStyle}
           placeholder="Share a thought..." 
-          rows="4"
           value={newThought}
           onChange={(e) => setNewThought(e.target.value)}
         ></textarea>
         
-        <button className="submit-thought" onClick={handlePostThought}>
-          Post Thought
-        </button>
+        <div className="input-controls">
+          <select 
+            className="author-select" 
+            value={author} 
+            onChange={(e) => setAuthor(e.target.value)}
+          >
+            <option value="Person A">Person A</option>
+            <option value="Person B">Person B</option>
+          </select>
+          
+          <button className="submit-thought" onClick={handlePostThought}>
+            Post Thought
+          </button>
+        </div>
       </div>
 
       <div className="thoughts-container">
