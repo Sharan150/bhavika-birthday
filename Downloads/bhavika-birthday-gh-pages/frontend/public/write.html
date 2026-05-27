@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post it Note!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #121212; /* Dark mode for modern look */
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+        }
+
+        .app-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: -webkit-linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            width: 95%;
+            max-width: 650px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .post-it-wrapper {
+            position: relative;
+            width: 100%;
+            display: inline-block;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .post-it-bg {
+            width: 100%;
+            display: block;
+            pointer-events: none;
+        }
+
+        .post-it-text {
+            position: absolute;
+            /* Adjust percentages based on where the writable area of template.png is */
+            /* Defaulting to centered for safety */
+            top: 15%;
+            left: 10%;
+            width: 80%;
+            height: 70%;
+            background: transparent;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            color: #111;
+            line-height: 1.4;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .post-it-text::placeholder {
+            color: rgba(0,0,0,0.4);
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-post {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            box-shadow: 0 10px 20px rgba(167, 119, 227, 0.4);
+        }
+
+        .btn-post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(167, 119, 227, 0.6);
+        }
+        
+        .btn-post:active {
+            transform: translateY(1px);
+        }
+
+        .btn-clear {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-clear:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="app-title">Leave a Note!</h1>
+    
+    <div class="container">
+        <div class="post-it-wrapper" id="capture-area">
+            <img src="static/media/template.png" alt="Post-it template" class="post-it-bg">
+            <textarea class="post-it-text" id="note-text" placeholder="Tap here to write your message..."></textarea>
+        </div>
+        
+        <div class="controls">
+            <button class="btn-clear" onclick="clearText()">Clear</button>
+            <button class="btn-post" onclick="postIt()">Post It!</button>
+        </div>
+    </div>
+
+    <script>
+        function clearText() {
+            document.getElementById('note-text').value = '';
+        }
+
+        function postIt() {
+            const captureArea = document.getElementById('capture-area');
+            const textArea = document.getElementById('note-text');
+            const btn = document.querySelector('.btn-post');
+            
+            // Temporarily hide placeholder for clean capture if empty
+            const oldPlaceholder = textArea.placeholder;
+            if (!textArea.value) {
+                textArea.placeholder = '';
+            }
+            
+            btn.innerText = 'Creating...';
+            btn.disabled = true;
+
+            html2canvas(captureArea, {
+                scale: 2, // High resolution
+                useCORS: true,
+                backgroundColor: null // Transparent background
+            }).then(canvas => {
+                // Restore placeholder
+                textArea.placeholder = oldPlaceholder;
+                btn.innerText = 'Post It!';
+                btn.disabled = false;
+
+                // Create download link
+                const link = document.createElement('a');
+                link.download = 'my-note.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                console.error('Error generating image:', err);
+                alert('Oops, something went wrong while generating the image.');
+                btn.innerText = 'Post It!';
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
