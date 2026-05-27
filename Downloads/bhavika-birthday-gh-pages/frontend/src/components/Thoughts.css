@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+
+.thoughts-section {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Lora', serif; /* Or any elegant serif font you prefer */
+}
+
+.thought-card {
+  /* Using the thought.png that is already in public dir for the background */
+  background-image: url('../../public/Thought.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  padding: 50px 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  color: #3b1c24; /* High contrast text */
+  position: relative;
+}
+
+.thought-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  white-space: pre-wrap; /* Keeps line breaks from textarea */
+}
+
+.author {
+  font-style: italic;
+  font-weight: bold;
+  text-align: right;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.timestamp {
+  font-size: 0.85rem;
+  text-align: right;
+  opacity: 0.7;
+}
+
+.input-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.author-select,
+.thought-input {
+  font-family: inherit;
+  font-size: 1.15rem; /* Match thought text size */
+  border: none;
+  background-color: transparent; /* Makes the input invisible, so you write directly on the background */
+  color: #3b1c24;
+}
+
+.author-select:focus,
+.thought-input:focus {
+  outline: none; /* Removes the focus ring for a seamless look */
+}
+
+.author-select {
+  padding: 10px 0;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: bold;
+  font-style: italic;
+  appearance: none; /* Removes default dropdown arrow for cleaner look */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.thought-input {
+  padding: 10px 0;
+  resize: none; /* Prevent resizing to keep it within the card seamlessly */
+  min-height: 150px;
+}
+
+.thought-input::placeholder {
+  color: #3b1c24;
+  opacity: 0.5; /* Subtle and elegant placeholder */
+  font-style: italic;
+}
+
+.submit-thought {
+  align-self: flex-end;
+  padding: 10px 24px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #3b1c24;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-thought:hover {
+  background-color: #5a2e39;
+}
+
+@media (max-width: 480px) {
+  .thought-card {
+    padding: 40px 20px;
+  }
+}
