@@ -104,7 +104,7 @@ const Thoughts = () => {
         {thoughts.map((thought) => (
           <div key={thought.id} className="thought-card" style={cardStyle}>
             <button className="delete-thought" onClick={() => handleDelete(thought.id)} title="Delete thought">
-              &times;
+              🗑️
             </button>
             <p className="thought-text">{thought.text}</p>
             <p className="author">- {thought.author}</p>
