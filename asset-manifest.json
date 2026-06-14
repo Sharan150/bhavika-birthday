@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/bhavika-birthday/static/css/main.f9ec1c2c.css",
-    "main.js": "/bhavika-birthday/static/js/main.6d2750c6.js",
+    "main.css": "/bhavika-birthday/static/css/main.b2cfb919.css",
+    "main.js": "/bhavika-birthday/static/js/main.f481e355.js",
     "index.html": "/bhavika-birthday/index.html",
-    "main.f9ec1c2c.css.map": "/bhavika-birthday/static/css/main.f9ec1c2c.css.map",
-    "main.6d2750c6.js.map": "/bhavika-birthday/static/js/main.6d2750c6.js.map"
+    "main.b2cfb919.css.map": "/bhavika-birthday/static/css/main.b2cfb919.css.map",
+    "main.f481e355.js.map": "/bhavika-birthday/static/js/main.f481e355.js.map"
   },
   "entrypoints": [
-    "static/css/main.f9ec1c2c.css",
-    "static/js/main.6d2750c6.js"
+    "static/css/main.b2cfb919.css",
+    "static/js/main.f481e355.js"
   ]
 }
